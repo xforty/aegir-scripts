@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Provide parameters
+# TODO: Provide parameters
 makefile=${makefile:-distro.make}
 web_server=${web_server:-@server_master}
 platform_env=${platform_env:-dev}
@@ -22,7 +22,7 @@ if [ -z $default_platform ]; then
 fi
 
 # Give them a chance to change it.
-read -e platform -p "Platform name? [$default_platform] "
+read -p "Platform name? [$default_platform] " -e platform
 
 if [ -z $platform ]; then
   platform=$default_platform
