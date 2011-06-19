@@ -44,7 +44,7 @@ if [ "x$platform_env" = "xprod" ]; then
 
   # If the repo is dirty don't both creating a tag.
   git status >/dev/null
-  if [ $? -eq 0 ]; then
+  if [ $? -eq 1 ]; then
     # Create a tag
     git tag $tag_name -m "Release tag"
     git push --tags
