@@ -79,8 +79,9 @@ cd /var/aegir/platforms
 platform_name=`echo $tag_name | tr - _`
 
 sudo -H -u aegir tar zxf /tmp/${tag_name}.tar.gz
+# TODO:
 # Or do we setaclf
-#chmod -R  g+w /var/aegir/platforms/${tag_name}
+chmod -R  g+w /var/aegir/platforms/${tag_name}
 
 # TODO: Does assigning the client work?
 sudo -H -u aegir drush --verbose provision-save @platform_${platform_name} --context_type=platform \
