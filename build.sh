@@ -19,6 +19,9 @@ default_platform=`git tag -l | tail -1 | awk -F- '{ print $1 }'`
 # If there are no tags we guess the name of the repo is www.sitename.com
 if [ -z $default_platform ]; then
   default_platform=`git remote -v | awk -F. '{ print $4 }'`
+  if [ -z $default_platform ]; then
+    default_platform=$USER
+  fi
 fi
 
 # Give them a chance to change it.
@@ -34,7 +37,7 @@ platform=`echo $platform | cut -c 1-17`
 tag_name=$platform-$platform_env-v`date +%Y-%m-%d-%H-%M`
 
 # Get the client name or don't set it
-eval `cat distro.make | perl -pi -e's/ = /=/' | grep client_uname`
+eval `cat distro.make | perl -pi -e's/ = /=/' | grep client_uname | grep -v ^;`
 if [ -n $client_uname ]; then
   client="--client=$client_uname"
 fi
